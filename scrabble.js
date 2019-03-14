@@ -92,7 +92,7 @@ function isAWord(word) {
  */
 
 $(document).ready(function () { 
-    /*alert('Hello');*/
+    getRedHerring();
     $('h1').on('click', function () {
         alert('bye');
     });
@@ -147,38 +147,7 @@ $(document).ready(function () {
         alert("Play again");
     });
 
-
-
-    /* Clicked on the play again
-     * column hidden
-     * clickable column deselected
-     * Done button has come back
-     * Each clickable row has filled up with 2 letter words*/
-
-    /* On click of play again
-     * picks out 2 letters
-     * It can repeat a letter it has already picked
-     * puts the 2 letters together
-     * it cannot repeat a 2 letter combination
-     * does this 10 times
-     * displays letter combinations in the clickable column*/
-
-    /* On click of play again
-     * picks out 2 letters
-     * Puts these letters together to make a 2 letter combo
-     * checks that 5 are actual words
-     * writes to list
-     * checks the other 5 are red herrings
-     * writes to list
-     * shuffles list
-     * Writes them to the table
-     * 
-    
-    let r = 0;
-    Math.floor(Math.random() * twoLetterWords.length)
-   
-
-add five words to the list
+/*add five words to the list
 add five red herrings to the list
 shuffle list
 write the list to the table*/
@@ -195,14 +164,44 @@ function getWord() {
    }
 
 function getRedHerring() {
-       return "UX";
+    const conto = ["B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","X","Z","W","Y"]
+    const vowels = ["A","E","I","O","U"]
+    const alphabet = conto.concat(vowels)
+    let word = "do";
+
+    do {
+        let r = Math.floor(Math.random() * alphabet.length);
+        let firstletter = alphabet[r]
+        let secondLetter = "";
+
+        if (conto.includes(FirstLetter)) {
+                secondLetter = vowels[Math.floor(Math.random() * vowels.length)]
+        } else {
+                secondLetter = conto[Math.floor(Math.random() * conto.length)]
+        }
+
+        word = firstLetter + secondLetter
+
+    } while (twoLetterWord.includes(word))
+
+    console.log(word);
+    return word;
+
+
 }
 
    function shuffleList(Arr) {
     
     return Arr;
    }
-       
 
-    
+
+
+
+
+
+
+
+
+
 });
