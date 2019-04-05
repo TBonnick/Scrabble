@@ -1,18 +1,37 @@
-alert("This is linked");
+alert("Select the two letter pairs you think are words. Click done when you have made your selections")
 
-//function
+const twoLetterWord = ["aa", "ab", "ad", "ae", "ag", "ah", "ai", "al", "am", "an", "ar", "as", "at", "aw", "ax", "ay", "ba", "be", "bi",
+    "bo", "by", "ch", "da", "de", "di", "do", "ea", "ed", "ee", "ef", "eh", "el", "em", "en", "er", "es", "et",
+    "ex", "fa", "fe", "fy", "gi", "go", "gu", "ha", "he", "hi", "hm", "ho", "id", "if", "in", "io", "is", "it",
+    "ja", "jo", "ka", "ki", "ko", "ky", "la", "li", "lo", "ma", "me", "mi", "mm", "mo", "mu", "my", "na",
+    "ne", "no", "nu", "ny", "ob", "od", "oe", "of", "oh", "oi", "om", "on", "oo", "op", "or", "os", "ou", "ow", "ox",
+    "oy", "pa", "pe", "pi", "po", "qi", "re", "sh", "si", "so", "st", "ta", "te", "ti", "to", "ug", "uh", "um", "un",
+    "up", "ur", "us", "ut", "we", "wo", "xi", "xu", "ya", "ye", "yo", "yu", "za", "zo"];
 
-//loop to go through the 10 answers
+function startGame() {
+    $(".clickable").removeClass("selected");
+    $(".feedback-heading").hide();
+    $(".feedback").hide();
+    let pairs = [];
+    for (let i = 1; i <= 5; ++i) {
+        pairs.push(getWord());
+    }
 
-//loop through the array? create an array with correct answers
+    for (let i = 1; i <= 5; ++i) {
+        console.log(i);
+        pairs.push(getRedHerring());
 
-//if statement
+    }
 
-//if the answer is a word and it is selected then this is correct 
-// if the answer is not a word and it is not selected then this is correct
-//if the answer is a word and it is not selected then this is incorrect
-//if the answer is not a word and it is selected then this is incorrect. 
+    $(".feedback").removeClass("correct")
+    $(".feedback").removeClass("incorrect")
+    $(".button-again").hide();
 
+    pairs = shuffleList(pairs)
+
+    writeListToTable(pairs)
+
+}
 
 /*Created function called getResult
  * let tds = [];
@@ -57,50 +76,78 @@ function getResult() {
         } 
 
     }
-    return countCorrect; 
+    return "Your score is " + countCorrect; 
 }
          
-/*function called isAWord
- * Takes const twoLetterWord. 
- * Takes a string and looks for the string in the const 
- * string will have to be lower case
- * If the string is in the const it returns true (indexOf)
- * else it returns false 
- */
-
-const twoLetterWord = ["aa", "ab", "ad", "ae", "ag", "ah", "ai", "al", "am", "an", "ar", "as", "at", "aw", "ax", "ay", "ba", "be", "bi",
-    "bo", "by", "ch", "da", "de", "di", "do", "ea", "ed", "ee", "ef", "eh", "el", "em", "en", "er", "es", "et",
-    "ex", "fa", "fe", "fy", "gi", "go", "gu", "ha", "he", "hi", "hm", "ho", "id", "if", "in", "io", "is", "it",
-    "ja", "jo", "ka", "ki", "ko", "ky", "la", "li", "lo", "ma", "me", "mi", "mm", "mo", "mu", "my", "na",
-    "ne", "no", "nu", "ny", "ob", "od", "oe", "of", "oh", "oi", "om", "on", "oo", "op", "or", "os", "ou", "ow", "ox",
-    "oy", "pa", "pe", "pi", "po", "qi", "re", "sh", "si", "so", "st", "ta", "te", "ti", "to", "ug", "uh", "um", "un",
-    "up", "ur", "us", "ut", "we", "wo", "xi", "xu", "ya", "ye", "yo", "yu", "za", "zo"];
 function isAWord(word) {
     
 
-    return twoLetterWord.indexOf(word) != -1;
+    return twoLetterWord.indexOf(word.toLowerCase()) != -1;
 }
 
+function getResults() {
+    return 0;
+}
+
+function getWord() {
+    let r = Math.floor(Math.random() * twoLetterWord.length);
+    return twoLetterWord[r].toUpperCase();
+}
+
+function writeListToTable(list) {
+    for (letterPair of list) {
+        console.log(letterPair);
+    }
+
+    $(".clickable").each(function (index, element) {
+        $(element).text(list[index]);
+
+    })
+}
+
+function shuffleList(pairs) {
+    let shuffList = [];
 
 
+    while (pairs.length > 0) {
+        let g = Math.floor(Math.random() * pairs.length);
+        let chosenWord = pairs[g];
+        pairs.splice(g, 1);
+        shuffList.push(chosenWord);
+    }
 
 
+    return shuffList;
 
 
-/*In this function we have the dollar sign 
- * 
- */
+}
+
+function getRedHerring() {
+    const conto = ["B", "C", "D", "F", "G", "H", "J", "K", "L", "M", "N", "P", "Q", "R", "S", "T", "V", "X", "Z", "W", "Y"]
+    const vowels = ["A", "E", "I", "O", "U", "Y"]
+
+    do {
+        let r = Math.floor(Math.random() * conto.length);
+        let f = Math.floor(Math.random() * vowels.length);
+        let firstLetter = conto[r]
+        let secondLetter = vowels[f];
+
+        if (Math.random() > 0.5) {
+            word = conto[r] + vowels[f]
+        } else {
+            word = vowels[f] + conto[r]
+        }
+
+    }
+
+    while (isAWord(word))
+
+    console.log(word);
+    return word;
+}
 
 $(document).ready(function () { 
-    getRedHerring();
-    $('h1').on('click', function () {
-        alert('bye');
-    });
-
-    /*$("td").click(function () {
-        $("td").toggleClass("selected");
-    });*/
-    //.this sets it to only that element rather than the whole element. 
+    
     $("td.clickable").click(function () {
         //$(this).toggleClass("selected");
         if ($(this).hasClass("selected")) {
@@ -108,100 +155,22 @@ $(document).ready(function () {
         } else {
             $(this).addClass("selected");
         }
-            
     });
 
-   
-    
-
-    function getResults() {
-        return 0;
-    }
-
     $("button.button-done").click(function () {
+        $(".feedback-heading").show();
+        $(".feedback").show();
+        $(".button-again").show();
         alert(getResult());
     });
 
     $("button.button-again").click(function () {
-        $(".clickable").removeClass("selected");
-        $(".feedback-heading").hide();
-        $(".feedback").hide();
-        let pairs = [];
-        for (let i = 1; i <= 5; ++i) {
-            pairs.push(getWord());
-        }
-        //repeat five times:
-        //add a red herring to the list
-        for (let i = 1; i <= 5; ++i) {
-            pairs.push(getRedHerring());
-
-        }
-       
-        pairs = shuffleList(pairs)
-
-        writeListToTable(pairs) 
-
-
-
-
-        alert("Play again");
+        alert("Play Again?");
+            startGame();
+            
     });
 
-/*add five words to the list
-add five red herrings to the list
-shuffle list
-write the list to the table*/
 
-function getWord() {
-    let r = Math.floor(Math.random() * twoLetterWord.length);
-    return twoLetterWord[r];
-}
-
-   function writeListToTable(list) {
-       for (letterPair of list) {
-           console.log(letterPair);
-       }
-   }
-
-function getRedHerring() {
-    const conto = ["B","C","D","F","G","H","J","K","L","M","N","P","Q","R","S","T","V","X","Z","W","Y"]
-    const vowels = ["A","E","I","O","U"]
-    const alphabet = conto.concat(vowels)
-    let word = "do";
-
-    do {
-        let r = Math.floor(Math.random() * alphabet.length);
-        let firstletter = alphabet[r]
-        let secondLetter = "";
-
-        if (conto.includes(FirstLetter)) {
-                secondLetter = vowels[Math.floor(Math.random() * vowels.length)]
-        } else {
-                secondLetter = conto[Math.floor(Math.random() * conto.length)]
-        }
-
-        word = firstLetter + secondLetter
-
-    } while (twoLetterWord.includes(word))
-
-    console.log(word);
-    return word;
-
-
-}
-
-   function shuffleList(Arr) {
-    
-    return Arr;
-   }
-
-
-
-
-
-
-
-
-
+    startGame();
 
 });

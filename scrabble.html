@@ -1,29 +1,45 @@
-﻿<!DOCTYPE html>
+﻿    <!DOCTYPE html>
 
 <html lang="en" xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
     <script src="scrabble.js" type="text/javascript"></script>
-
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
 
     <title>Scrabble Exercise Game</title>
     <style>
+        h1 {
+            color: red;
+            font-weight: bold;
+            text-align: center;
+            font-size: 4.5em;
+            margin-bottom: 75px
+        }
+
         table {
             border-collapse: collapse;
         }
 
         table, th, td {
             border: 1px solid black;
+            width: 500px
         }
 
         th, td {
             padding: 15px;
             text-align: center;
+            font-size: 20px
         }
 
         button {
-            margin-top: 10px;
+            margin-top: 20px;
+            border-radius: 2px;
+            background-color: green;
+            font-size: 20px;
         }
 
         .danger {
@@ -31,12 +47,12 @@
         }
 
         .clickable {
-            cursor:pointer;
+            cursor: pointer;
         }
 
         .selected {
             background-color: blue;
-            color:white;
+            color: white;
         }
 
         .correct {
@@ -46,64 +62,81 @@
         .incorrect {
             background-color: red;
         }
-    </style>
 
+        body {
+            padding-bottom: 75px;
+            background-image: url("https://images.freeimages.com/images/large-previews/bb0/scrabble-pieces-1230896.jpg");
+            background-color: #cccccc;
+        }
+    </style>
 
 </head>
 <body>
-    <h1 class="danger">2 Letter Words</h1>
 
-    <table>
-        <tr>
-            <th>2 Letter Words</th>
-            <th class="feedback-heading">Results</th>
-        </tr>
-        <tr>
-            <td class="clickable">MO</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">NY</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">SH</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">TU</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">AM</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">KY</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">FO</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">EF</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">EL</td>
-            <td class="feedback"></td>
-        </tr>
-        <tr>
-            <td class="clickable">VI</td>
-            <td class="feedback"></td>
-        </tr>
+    <h1>Two Letter Words</h1>
 
-    </table>
+   
 
-    <button type="button" class="button-done" style="padding: 5px 10px;">Done</button>
+    <div class="container-fluid">
+        <div align="center" style="vertical-align:bottom">
+            <div align="center" style="vertical-align:bottom">
+                <table>
+                    <tr>
+                        <th>2 Letter Words</th>
+                        <th class="feedback-heading">Results</th>
+                    </tr>
+                    <tr>
+                        <td class="clickable">MO</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">NY</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">SH</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">TU</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">AM</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">KY</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">FO</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">EF</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">EL</td>
+                        <td class="feedback"></td>
+                    </tr>
+                    <tr>
+                        <td class="clickable">VI</td>
+                        <td class="feedback"></td>
+                    </tr>
 
-    <button type="button" class="button-again" style="padding: 5px 10px;">Play Again</button>
+                </table>
+
+                <button type="button" class="button-done" style="padding: 5px 10px;">Done</button>
+
+                <button type="button" class="button-again" style="padding: 5px 10px;">Play Again</button>
+            </div>
+
+        </div>
+
+    </div>
+
 
 </body>
 </html>
